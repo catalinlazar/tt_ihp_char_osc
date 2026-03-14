@@ -1,23 +1,64 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:      "IHP Gate Delay Characterizer"
+  description: "Measures 4 flavors of ring oscillators (Inv1, 2, 4, NAND) using a 24-bit counter."
+  how_it_works: >
+    Four 31-stage ring oscillators are implemented using specific IHP SG13G2 standard cells. 
+    A 2-bit mux selects the clock source for a 24-bit asynchronous counter. 
+    A 10ms sampling window (derived from the 10MHz system clock) captures the counter value, 
+    which is then read out in 8-bit slices.
+  how_to_test: >
+    1. Set rst_n high and ui_in[0] low. 
+    2. Set ui_in[1] high to enable oscillation. 
+    3. Cycle through ui_in[5:4] to select different oscillators. 
+    4. Cycle through ui_in[3:2] to read the Low, Mid, and High bytes of the frequency on uo_out.
+  
+  # Top module name (Must match your Verilog module name)
+  top_module:  "tt_um_catalinlazar_ihp_osc"
+  
+  # External inputs (e.g. switches, button, SDR clock)
+  inputs:
+    - reset_osc (manual)
+    - enable_osc
+    - byte_sel_bit0
+    - byte_sel_bit1
+    - ro_sel_bit0
+    - ro_sel_bit1
+    - unused_in6
+    - unused_in7
+  # Dedicated outputs (e.g. PWM, LEDs, 7-segment display)
+  outputs:
+    - data_out0
+    - data_out1
+    - data_out2
+    - data_out3
+    - data_out4
+    - data_out5
+    - data_out6
+    - data_out7
+  # Bidirectional pins (Leave as unused for this design)
+  uio:
+    - unused_0
+    - unused_1
+    - unused_2
+    - unused_3
+    - unused_4
+    - unused_5
+    - unused_6
+    - unused_7
 
-  # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  # Do not change these
+  clock_hz: 10000000
+  tiles: "1x1"
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_catalinlazar_ihp_osc"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
-    - "project.v"
+    - "tt_um_catalinlazar_ihp_osc.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
