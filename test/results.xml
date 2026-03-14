@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1773522670" />
+    <testcase name="test_project" classname="test" file="/home/admin/Documents/git/tt_ihp_char_osc/test/test.py" lineno="5" time="2.129067897796631" sim_time_ns="10900.0" ratio_time="5119.611268048518" />
+  </testsuite>
+</testsuites>
