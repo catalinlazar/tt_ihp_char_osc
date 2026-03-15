@@ -8,14 +8,12 @@
  //  // List all unused inputs to prevent warnings
  //  wire _unused = &{ena, clk, rst_n, 1'b0};
 
-
 `ifdef COCOTB_SIM
 module sg13g2_inv_1 (input wire A, output wire Y); assign #1 Y = ~A; endmodule
 module sg13g2_inv_2 (input wire A, output wire Y); assign #1 Y = ~A; endmodule
 module sg13g2_inv_4 (input wire A, output wire Y); assign #1 Y = ~A; endmodule
 module sg13g2_nand2_1 (input wire A, input wire B, output wire Y); assign #1 Y = ~(A & B); endmodule
 `endif
-
 
 module tt_um_catalinlazar_ihp_osc (
     input  wire [7:0] ui_in,    // Dedicated inputs
