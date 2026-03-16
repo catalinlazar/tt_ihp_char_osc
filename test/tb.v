@@ -1,38 +1,62 @@
-`default_nettype none
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 
-/* This testbench just instantiates the module and makes some convenient wires
-   that can be driven / tested by the cocotb test.py.
-*/
-module tb ();
+module tb;
+    reg [7:0] ui_in;
+    wire [7:0] uo_out;
+    reg clk;
+    reg rst_n;
 
-  // Dump the signals to a FST file. You can view it with gtkwave or surfer.
-  initial begin
-    $dumpfile("tb.fst");
-    $dumpvars(0, tb);
-    #1;
-  end
+    // Instantiate the Top Module
+    tt_um_big_osc_array dut (
+        .ui_in(ui_in),
+        .uo_out(uo_out),
+        .clk(clk),
+        .rst_n(rst_n)
+    );
 
-  // Wire up the inputs and outputs:
-  reg clk;
-  reg rst_n;
-  reg ena;
-  reg [7:0] ui_in;
-  reg [7:0] uio_in;
-  wire [7:0] uo_out;
-  wire [7:0] uio_out;
-  wire [7:0] uio_oe;
+    // Generate 10MHz System Clock (100ns period)
+    always #50 clk = ~clk;
 
-  // Replace tt_um_example with your module name:
-  tt_um_catalinlazar_ihp_osc   user_project (
-      .ui_in  (ui_in),    // Dedicated inputs
-      .uo_out (uo_out),   // Dedicated outputs
-      .uio_in (uio_in),   // IOs: Input path
-      .uio_out(uio_out),  // IOs: Output path
-      .uio_oe (uio_oe),   // IOs: Enable path (active high: 0=input, 1=output)
-      .ena    (ena),      // enable - goes high when design is selected
-      .clk    (clk),      // clock
-      .rst_n  (rst_n)     // not reset
-  );
+    initial begin
+        // Setup Waveform Dump
+        $dumpfile("tb.vcd");
+        $dumpvars(0, tb);
 
+        // Initialize Inputs
+        clk = 0;
+        rst_n = 0;
+        ui_in = 8'b0000_0000; // Reset active, Enable low
+
+        #200;
+        rst_n = 1;            // Release Reset
+        #100;
+        
+        // 1. Select Flavor 0 (ui_in[7:4] = 0) and Enable (ui_in[1] = 1)
+        ui_in = 8'b0000_0010; 
+        //$display("Oscillator Enabled. Waiting for 10ms measurement window...");
+        $display("Oscillator Enabled. Waiting for 100us measurement window...");
+
+        // In simulation, we don't want to wait 10 actual milliseconds.
+        // Let's wait long enough for the 'timer' in the DUT to hit 100,000.
+        // (100,000 * 100ns = 10ms, respecivelly 1000 * 100n = 100us)
+        // wait(dut.timer == 20'd100_000);
+        wait(dut.timer == 20'd1000); //shorter simulation time
+        #100; // Small buffer
+
+        // 2. Read the 24-bit result via Mux
+        $display("Reading 24-bit Counter Value:");
+        
+        ui_in[3:2] = 2'b00; #100; // Select Low Byte
+        $display("Byte 0 (LSB): %h", uo_out);
+        
+        ui_in[3:2] = 2'b01; #100; // Select Mid Byte
+        $display("Byte 1:       %h", uo_out);
+        
+        ui_in[3:2] = 2'b10; #100; // Select High Byte
+        $display("Byte 2 (MSB): %h", uo_out);
+
+        #1000;
+        $display("Simulation Finished.");
+        $finish;
+    end
 endmodule
