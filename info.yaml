@@ -3,24 +3,25 @@ project:
   title:      "IHP Gate Delay Characterizer"
   author:     "Catalin Lazar"
   language:   "Verilog"
-  description: "Measures 4 flavors of ring oscillators (Inv1, 2, 4) using a 24-bit counter."
+  description: "Measures 4 flavors of ring oscillators (Inv1, 2, 4, 8) using a 24-bit counter."
   clock_hz:    10000000
   tiles:       "1x1"
   top_module:  "tt_um_catalinlazar_big_ihp_osc_array"
   source_files:
-    - "tt_um_catalinlazar_ihp_osc.v"
+    - "tt_um_catalinlazar_big_ihp_osc_array.v"
+    - "catalinlazar_ihp_ring_osc_1248.v"
 
 # The pinout must use the bracketed index format for this version of the linter
 pinout:
   # Inputs
-  ui[0]: "reset_osc (manual)"
+  ui[0]: "rst_n (Global Reset)"
   ui[1]: "enable_osc"
   ui[2]: "byte_sel_bit0"
   ui[3]: "byte_sel_bit1"
   ui[4]: "ro_sel_bit0"
   ui[5]: "ro_sel_bit1"
-  ui[6]: "unused_in6"
-  ui[7]: "unused_in7"
+  ui[6]: "ro_sel_bit2"
+  ui[7]: "ro_sel_bit3"
 
   # Outputs
   uo[0]: "data_out0"
