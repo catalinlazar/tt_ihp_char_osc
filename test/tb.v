@@ -7,7 +7,7 @@ module tb;
     reg rst_n;
 
     // Instantiate the Top Module
-    tt_um_big_osc_array dut (
+   tt_um_catalinlazar_big_ihp_osc_array dut (
         .ui_in(ui_in),
         .uo_out(uo_out),
         .clk(clk),

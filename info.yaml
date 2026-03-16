@@ -3,10 +3,10 @@ project:
   title:      "IHP Gate Delay Characterizer"
   author:     "Catalin Lazar"
   language:   "Verilog"
-  description: "Measures 4 flavors of ring oscillators (Inv1, 2, 4, NAND) using a 24-bit counter."
+  description: "Measures 4 flavors of ring oscillators (Inv1, 2, 4) using a 24-bit counter."
   clock_hz:    10000000
   tiles:       "1x1"
-  top_module:  "tt_um_catalinlazar_ihp_osc"
+  top_module:  "tt_um_catalinlazar_big_ihp_osc_array"
   source_files:
     - "tt_um_catalinlazar_ihp_osc.v"
 

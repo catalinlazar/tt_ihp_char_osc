@@ -1,4 +1,4 @@
-module ring_osc #(
+module catalinlazar_ihp_ring_osc_1248 #(
     parameter DRIVE = 1,
     parameter STAGES = 250 // + 1 NAND = 251
 )(

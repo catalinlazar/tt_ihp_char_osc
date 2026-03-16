@@ -31,10 +31,10 @@
   "//": "https://tinytapeout.com/faq/#how-can-i-map-an-additional-external-clock-to-one-of-the-gpios",
     "CLOCK_PORT": "clk",
 
-    "DESIGN_NAME": "tt_um_big_osc_array",
+    "DESIGN_NAME": "tt_um_catalinlazar_big_ihp_osc_array",
     "VERILOG_FILES": [
-	"dir::tt_um_big_osc_array.v",
-	"dir::ring_osc.v"
+	"dir::tt_um_catalinlazar_big_ihp_osc_array.v",
+	"dir::catalinlazar_ihp_ring_osc_1248.v"
     ],
   "SDC_FILE": "dir::config.sdc",
   "DIE_AREA": "0 0 160 100",

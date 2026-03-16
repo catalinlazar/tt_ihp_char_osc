@@ -1,6 +1,6 @@
 `default_nettype none
 
-module tt_um_big_osc_array (
+module tt_um_catalinlazar_big_ihp_osc_array (
     input  wire [7:0] ui_in,    // [7:4] flavor, [3:2] byte_sel, [1] en, [0] rst_n
     output wire [7:0] uo_out,   // 8-bit output (multiplexed)
     input  wire       clk,      // 10MHz System Clock
@@ -27,7 +27,7 @@ module tt_um_big_osc_array (
             // Local Enable: Only HIGH if global_en is high AND this flavor is selected
             wire local_en = (global_en && (f_sel == j));
             
-            ring_osc #(
+            catalinlazar_ihp_ring_osc_1248 #(
                 .DRIVE((j%4 == 0) ? 1 : (j%4 == 1) ? 2 : (j%4 == 2) ? 4 : 8),
                 .STAGES(250) // 1 NAND + 250 INVs = 251 (Prime)
             ) v_osc (

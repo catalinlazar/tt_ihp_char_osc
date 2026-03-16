@@ -11,8 +11,8 @@ BUILD_DIR = $(TEST_DIR)/sim_build
 
 # Source files (Excluding primitives.v from synthesis lists usually, but needed for sim)
 SRCS = $(SRC_DIR)/primitives.v \
-       $(SRC_DIR)/ring_osc.v \
-       $(SRC_DIR)/tt_um_big_osc_array.v
+       $(SRC_DIR)/catalinlazar_ihp_ring_osc_1248.v \
+       $(SRC_DIR)/tt_um_catalinlazar_big_ihp_osc_array.v
 
 # Testbench
 TB = $(TEST_DIR)/tb.v
