@@ -1,12 +1,19 @@
 `default_nettype none
 
 module tt_um_catalinlazar_big_ihp_osc_array (
-    input  wire [7:0] ui_in,    // [7:4] flavor, [3:2] byte_sel, [1] en, [0] rst_n
-    output wire [7:0] uo_out,   // 8-bit output (multiplexed)
-    input  wire       clk,      // 10MHz System Clock
-    input  wire       rst_n     // Global Reset
+    input  wire [7:0] ui_in,    // Dedicated inputs
+    output wire [7:0] uo_out,   // Dedicated outputs
+    input  wire [7:0] uio_in,   // IOs: Input path (unused)
+    output wire [7:0] uio_out,  // IOs: Output path (unused)
+    output wire [7:0] uio_oe,   // IOs: Enable path (set to 0 for all inputs)
+    input  wire       ena,      // always 1 when the design is powered, so you can ignore it
+    input  wire       clk,      // clock
+    input  wire       rst_n     // reset_n
 );
-
+   // Set bidirectional pins to high-impedance/input mode to avoid shorts
+    assign uio_oe  = 8'b00000000;
+    assign uio_out = 8'b00000000;
+   
     // 1. Synchronize Control Signals (to 10MHz domain)
     reg [6:0] sync_reg;
     always @(posedge clk) begin

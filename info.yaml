@@ -14,6 +14,8 @@ project:
 # The pinout must use the bracketed index format for this version of the linter
 pinout:
   # Inputs
+  ena: "unused"
+  clk: "clock"
   ui[0]: "rst_n (Global Reset)"
   ui[1]: "enable_osc"
   ui[2]: "byte_sel_bit0"
