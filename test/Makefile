@@ -6,14 +6,19 @@ SIM ?= icarus
 FST ?= -fst # Use more efficient FST format
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = tt_um_catalinlazar_big_ihp_osc_array.v
+
+# Updated PROJECT_SOURCES to include the oscillator and primitive models
+PROJECT_SOURCES = tt_um_catalinlazar_big_ihp_osc_array.v \
+                  catalinlazar_ihp_ring_osc_1248.v \
+                  primitives.v
 
 ifneq ($(GATES),yes)
 
 # RTL simulation:
 SIM_BUILD				= sim_build/rtl
 VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
-COMPILE_ARGS    += -DCOCOTB_SIM
+# Added -DSIM here to trigger the simulation models in primitives.v
+COMPILE_ARGS    += -DCOCOTB_SIM -DSIM
 
 else
 
