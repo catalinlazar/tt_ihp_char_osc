@@ -13,7 +13,7 @@
 
   "//": "PL_TARGET_DENSITY_PCT - You can increase this if Global Placement fails with error GPL-0302.",
   "//": "Users have reported that values up to 80 worked well for them.",
-  "PL_TARGET_DENSITY_PCT": 45,
+  "PL_TARGET_DENSITY_PCT": 60,
 
   "//": "CLOCK_PERIOD - Increase this in case you are getting setup time violations.",
   "//": "The value is in nanoseconds, so 20ns == 50MHz.",
@@ -25,24 +25,23 @@
 
   "//": "RUN_LINTER, LINTER_INCLUDE_PDK_MODELS - Disabling the linter is not recommended!",
   "RUN_LINTER": 1,
-    "LINTER_INCLUDE_PDK_MODELS": 1,
-    "VERILATOR_FLAGS": [
-    "-Wno-MODMISSING",
-    "-I/home/runner/work/pdk/PDK/ihp-sg13g2/libs.ref/sg13g2_stdcell/verilog"
+  "LINTER_INCLUDE_PDK_MODELS": 1,
+  "VERILATOR_FLAGS": [
+    "-Wno-MODMISSING"
   ],
 
   "//": "If you need a custom clock configuration, read the following documentation first:",
   "//": "https://tinytapeout.com/faq/#how-can-i-map-an-additional-external-clock-to-one-of-the-gpios",
-    "CLOCK_PORT": "clk",
+  "CLOCK_PORT": "clk",
 
-    "DESIGN_NAME": "tt_um_catalinlazar_big_ihp_osc_array",
-    "VERILOG_FILES": [
-	"dir::tt_um_catalinlazar_big_ihp_osc_array.v",
-	"dir::catalinlazar_ihp_ring_osc_1248.v"
-    ],
+  "DESIGN_NAME": "tt_um_catalinlazar_big_ihp_osc_array",
+  "VERILOG_FILES": [
+    "dir::tt_um_catalinlazar_big_ihp_osc_array.v",
+    "dir::catalinlazar_ihp_ring_osc_1248.v"
+  ],
   "SDC_FILE": "dir::config.sdc",
   "DIE_AREA": "0 0 160 100",
-  "FP_CORE_UTIL": 40,
+  "FP_CORE_UTIL": 55,
 
   "//": "Configuration docs: https://librelane.readthedocs.io/en/latest/reference/configuration.html",
 
@@ -60,8 +59,8 @@
   "//": "Reduce wasted space",
   "TOP_MARGIN_MULT": 1,
   "BOTTOM_MARGIN_MULT": 1,
-  "LEFT_MARGIN_MULT": 6,
-  "RIGHT_MARGIN_MULT": 6,
+  "LEFT_MARGIN_MULT": 1,
+  "RIGHT_MARGIN_MULT": 1,
 
   "//": "Absolute die size",
   "FP_SIZING": "absolute",

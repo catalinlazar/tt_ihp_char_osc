@@ -46,7 +46,7 @@ module tt_um_catalinlazar_big_ihp_osc_array (
     endgenerate
 
     // Selection Mux
-    wire selected_hsc = (f_sel_reg == 2'd0) ? osc_clks[0] : 
+    (* keep *) wire selected_hsc = (f_sel_reg == 2'd0) ? osc_clks[0] : 
                         (f_sel_reg == 2'd1) ? osc_clks[1] : 
                         (f_sel_reg == 2'd2) ? osc_clks[2] : 1'b0;
 
