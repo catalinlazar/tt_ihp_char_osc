@@ -28,6 +28,10 @@ COMPILE_ARGS    += -DGL_TEST
 COMPILE_ARGS    += -DFUNCTIONAL
 COMPILE_ARGS    += -DCOCOTB_SIM
 COMPILE_ARGS    += -DSIM
+
+# ADD THE INCLUDE PATH HERE:
+COMPILE_ARGS += -I$(PDK_ROOT)/ihp-sg13g2/libs.ref/sg13g2_stdcell/verilog
+
 VERILOG_SOURCES += $(PDK_ROOT)/ihp-sg13g2/libs.ref/sg13g2_io/verilog/sg13g2_io.v
 VERILOG_SOURCES += $(PDK_ROOT)/ihp-sg13g2/libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v
 
