@@ -1,33 +1,33 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import ClockCycles
+from cocotb.triggers import ClockCycles, RisingEdge
 
 @cocotb.test()
 async def test_project(dut):
     dut._log.info("Start")
     
-    # 10 MHz Clock
-    clock = Clock(dut.clk, 100, units="ns")
+    # Set the clock (10 MHz = 100ns period)
+    clock = Clock(dut.clk, 100, unit="ns")
     cocotb.start_soon(clock.start())
 
-    # Reset Sequence
-    dut._log.info("Resetting")
-    dut.ena.value = 1       # Now a valid port
-    dut.uio_in.value = 0    # Now a valid port
+    # Initialize and Reset
+    dut.ena.value = 1
     dut.ui_in.value = 0
+    dut.uio_in.value = 0
     dut.rst_n.value = 0
     await ClockCycles(dut.clk, 10)
     dut.rst_n.value = 1
+    dut._log.info("Reset complete")
 
-    dut._log.info("Enabling Oscillator and Timer")
-    # ui_in[1] is Enable. 2 in decimal is 0000_0010 in binary.
+    # Enable Oscillator Flavor 0
+    # ui_in[1] is enable, others are selects. Value 2 = 8'b0000_0010
     dut.ui_in.value = 2 
     
-    # Wait for the simulation measurement window (1000 cycles)
-    # We wait slightly more than 1000 to ensure the snapshot happened
-    await ClockCycles(dut.clk, 1050)
+    # Wait for the measurement window
+    # In your DUT, the SIM wait time is 1000 cycles
+    dut._log.info("Waiting for measurement window...")
+    await ClockCycles(dut.clk, 1200) 
 
-    # Check snapshots (Optional: add assertions here if desired)
-    dut._log.info(f"Snapshot data at uo_out: {hex(int(dut.uo_out.value))}")
-
-    dut._log.info("Finished Test Successfully")
+    # Check outputs
+    dut._log.info(f"Final uo_out value: {hex(dut.uo_out.value.integer)}")
+    dut._log.info("Finished Test")

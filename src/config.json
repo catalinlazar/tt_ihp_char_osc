@@ -37,9 +37,9 @@
 
     "DESIGN_NAME": "tt_um_catalinlazar_big_ihp_osc_array",
     "VERILOG_FILES": [
-        "dir::tt_um_catalinlazar_big_ihp_osc_array.v",
-        "dir::catalinlazar_ihp_ring_osc_1248.v",
-        "dir::primitives.v"
+	"dir::tt_um_catalinlazar_big_ihp_osc_array.v",
+	"dir::catalinlazar_ihp_ring_osc_1248.v",
+	"dir::primitives.v"
     ],
   "SDC_FILE": "dir::config.sdc",
   "DIE_AREA": "0 0 160 100",
