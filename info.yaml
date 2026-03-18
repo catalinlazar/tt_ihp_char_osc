@@ -10,6 +10,7 @@ project:
   source_files:
     - "tt_um_catalinlazar_big_ihp_osc_array.v"
     - "catalinlazar_ihp_ring_osc_1248.v"
+    - "primitives.v"
 
 # Pinout mapping updated to match tt_um_catalinlazar_big_ihp_osc_array.v logic
 pinout:
