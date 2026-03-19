@@ -63,23 +63,27 @@ module tt_um_catalinlazar_ihp_osc_array (
    localparam  WAIT_TIME = 20'd5000;   // ~0.5 ms – very fast for CI
    // localparam WAIT_TIME = 20'd100_000;  // full version – comment out for now
    
-    always @(posedge clk) begin
-        if (!rst_n) begin
-            timer <= 20'b0;
-            snapshot <= 24'b0;
-        end else if (global_en) begin
-            if (timer < WAIT_TIME) begin
-                timer <= timer + 1'b1;
-            end else if (timer == WAIT_TIME) begin
-                snapshot <= count;
-                timer <= timer + 1'b1;
-            end
-        end else begin
-            timer <= 20'b0;
-        end
-    end
-
-    assign uo_out = (b_sel_reg == 2'b00) ? snapshot[7:0]   :
+   always @(posedge clk) begin
+      if (!rst_n) begin
+         timer <= 20'b0;
+         snapshot <= 24'b0;
+      end else if (global_en) begin
+         if (timer < WAIT_TIME) begin
+            timer <= timer + 1'b1;
+         end else if (timer == WAIT_TIME) begin
+            snapshot <= count;
+            timer <= timer + 1'b1;
+         end
+      end else begin
+         timer <= 20'b0;
+      end
+   end
+   
+   always @(posedge selected_hsc) begin
+      $display("OSC EDGE at time %t, count now %d", $time, count);
+   end
+   
+   assign uo_out = (b_sel_reg == 2'b00) ? snapshot[7:0]   :
                     (b_sel_reg == 2'b01) ? snapshot[15:8]  :
                     (b_sel_reg == 2'b10) ? snapshot[23:16] : 8'h00;
 

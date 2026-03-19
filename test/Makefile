@@ -47,14 +47,13 @@ COMPILE_ARGS 		+= -I$(SRC_DIR)
 VERILOG_SOURCES += $(PWD)/tb.v
 TOPLEVEL = tb
 
-# List test modules to run, separated by commas and without the .py suffix:
-# COCOTB_TEST_MODULES = test # Old
-
-# For GitHub Actions use the fast test
-ifeq ($(GITHUB_ACTIONS),true)
-    MODULE = test_ci
+# Choose test suite depending on context
+ifeq ($(GATES),yes)
+    MODULE = test_ci          # short test for gate-level (faster, less likely to timeout)
+else ifeq ($(GITHUB_ACTIONS),true)
+    MODULE = test_ci          # short test in CI
 else
-    MODULE = test
+    MODULE = test             # full detailed test locally
 endif
 
 # Add this for Verilator (safe default for designs with gate delays)
