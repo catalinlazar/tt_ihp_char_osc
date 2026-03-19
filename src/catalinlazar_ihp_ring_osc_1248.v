@@ -1,3 +1,4 @@
+(* dont_touch = "true" *)
 module catalinlazar_ihp_ring_osc_1248 #(
     parameter DRIVE = 1,
     parameter STAGES = 30 // + 1 NAND = 31
