@@ -78,11 +78,11 @@ module tt_um_catalinlazar_ihp_osc_array (
          timer <= 20'b0;
       end
    end
-   
-#   always @(posedge selected_hsc) begin
-#      $display("OSC EDGE at time %t, count now %d", $time, count);
-#   end
-   
+/*   
+   always @(posedge selected_hsc) begin
+      $display("OSC EDGE at time %t, count now %d", $time, count);
+   end
+*/  
    assign uo_out = (b_sel_reg == 2'b00) ? snapshot[7:0]   :
                     (b_sel_reg == 2'b01) ? snapshot[15:8]  :
                     (b_sel_reg == 2'b10) ? snapshot[23:16] : 8'h00;
