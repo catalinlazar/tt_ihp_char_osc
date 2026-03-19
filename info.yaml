@@ -3,16 +3,16 @@ project:
   title:      "IHP Gate Delay Characterizer (3-Flavor)"
   author:     "Catalin Lazar"
   language:   "Verilog"
-  description: "Characterizes 3 flavors of ring oscillators (Inv1, 2, 4) with 250 stages using a 24-bit counter."
+  description: "Characterizes 3 flavors of ring oscillators (Inv1, 2, 4) with 31 stages (30 inv + 1 NAND, prime length) using a 24-bit counter."
   clock_hz:    10000000
   tiles:       "1x1"
-  top_module:  "tt_um_catalinlazar_big_ihp_osc_array"
+  top_module:  "tt_um_catalinlazar_ihp_osc_array"
   source_files:
-    - "tt_um_catalinlazar_big_ihp_osc_array.v"
+    - "tt_um_catalinlazar_ihp_osc_array.v"
     - "catalinlazar_ihp_ring_osc_1248.v"
     - "primitives.v"
 
-# Pinout mapping updated to match tt_um_catalinlazar_big_ihp_osc_array.v logic
+# Pinout mapping updated to match tt_um_catalinlazar_ihp_osc_array.v logic
 pinout:
   # Inputs
   ui[0]: "global_en (Master Enable)"

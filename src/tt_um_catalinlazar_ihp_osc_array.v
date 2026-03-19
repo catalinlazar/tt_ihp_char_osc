@@ -1,6 +1,6 @@
 `default_nettype none
 
-module tt_um_catalinlazar_big_ihp_osc_array (
+module tt_um_catalinlazar_ihp_osc_array (
     input  wire [7:0] ui_in,    
     output wire [7:0] uo_out,   
     input  wire [7:0] uio_in,   
@@ -60,7 +60,8 @@ module tt_um_catalinlazar_big_ihp_osc_array (
     // Timer Logic
     reg [19:0] timer;
     reg [23:0] snapshot;
-    localparam WAIT_TIME = 20'd100_000; 
+    localparam WAIT_TIME = 20'd20000; 
+    // localparam WAIT_TIME = 20'd100_000; 
 
     always @(posedge clk) begin
         if (!rst_n) begin

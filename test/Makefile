@@ -8,7 +8,7 @@ TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
 
 # Updated PROJECT_SOURCES to include the oscillator and primitive models
-PROJECT_SOURCES = tt_um_catalinlazar_big_ihp_osc_array.v \
+PROJECT_SOURCES = tt_um_catalinlazar_ihp_osc_array.v \
                   catalinlazar_ihp_ring_osc_1248.v \
                   primitives.v
 
@@ -49,7 +49,13 @@ TOPLEVEL = tb
 
 # List test modules to run, separated by commas and without the .py suffix:
 # COCOTB_TEST_MODULES = test # Old
-MODULE = test # New (preferred / clearer)
+
+# For CI use the fast test
+ifeq ($(CI),true)
+    MODULE = test_ci
+else
+    MODULE = test
+endif
 
 # Add this for Verilator (safe default for designs with gate delays)
 ifeq ($(SIM),verilator)

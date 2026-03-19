@@ -17,7 +17,7 @@ module tb;
     wire [7:0] uio_oe;
 
     // Instantiate the Top Module
-    tt_um_catalinlazar_big_ihp_osc_array dut (
+    tt_um_catalinlazar_ihp_osc_array dut (
         .ui_in   (ui_in),
         .uo_out  (uo_out),
         .uio_in  (uio_in),

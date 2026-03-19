@@ -1,6 +1,6 @@
 module catalinlazar_ihp_ring_osc_1248 #(
     parameter DRIVE = 1,
-    parameter STAGES = 250 // + 1 NAND = 251
+    parameter STAGES = 30 // + 1 NAND = 31
 )(
     input  wire en,
     output wire clk_out

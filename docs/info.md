@@ -10,7 +10,7 @@ You can also include images in this folder and reference them in the markdown. E
 # IHP Gate Delay Characterizer
 
 ## How it works
-Three 251-stage ring oscillators are implemented using specific IHP SG13G2 standard cells. 
+Three 31-stage ring oscillators are implemented using specific IHP SG13G2 standard cells. 
 A 2-bit mux selects the clock source for a 24-bit asynchronous counter. 
 A 10ms sampling window (derived from the 10MHz system clock) captures the counter value, 
 which is then read out in 8-bit slices.
