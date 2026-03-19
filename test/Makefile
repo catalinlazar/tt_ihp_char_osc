@@ -50,8 +50,8 @@ TOPLEVEL = tb
 # List test modules to run, separated by commas and without the .py suffix:
 # COCOTB_TEST_MODULES = test # Old
 
-# For CI use the fast test
-ifeq ($(CI),true)
+# For GitHub Actions use the fast test
+ifeq ($(GITHUB_ACTIONS),true)
     MODULE = test_ci
 else
     MODULE = test

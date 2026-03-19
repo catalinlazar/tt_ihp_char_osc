@@ -60,9 +60,9 @@ module tt_um_catalinlazar_ihp_osc_array (
     // Timer Logic
     reg [19:0] timer;
     reg [23:0] snapshot;
-    localparam WAIT_TIME = 20'd20000; 
-    // localparam WAIT_TIME = 20'd100_000; 
-
+   localparam  WAIT_TIME = 20'd5000;   // ~0.5 ms – very fast for CI
+   // localparam WAIT_TIME = 20'd100_000;  // full version – comment out for now
+   
     always @(posedge clk) begin
         if (!rst_n) begin
             timer <= 20'b0;
