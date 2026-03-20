@@ -57,8 +57,20 @@ else
 endif
 
 # Add this for Verilator (safe default for designs with gate delays)
+# ifeq ($(SIM),verilator)
+#     COMPILE_ARGS += --timing
+# endif
+
+# ifeq ($(SIM),verilator)
+#     COMPILE_ARGS += --timing --threads 8 --threads-max-mtasks 300000 \
+#                     --x-assign fast --x-initial fast --no-assert
+# endif
+
 ifeq ($(SIM),verilator)
-    COMPILE_ARGS += --timing
+    COMPILE_ARGS += --timing --threads 8 --threads-max-mtasks 300000 \
+                    --x-assign fast --x-initial fast --no-assert \
+                    -O3 -march=znver2 -mtune=znver2 -flto -funroll-loops -fomit-frame-pointer
+    VM_PARALLEL_BUILDS = 1
 endif
 
 # include cocotb's make rules to take care of the simulator setup
